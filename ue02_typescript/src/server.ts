@@ -26,6 +26,7 @@ export class Server {
         this._server.get('/image.png', (req, res, next) => this.sendImage(res));
         this._server.get('/cssinternal', (req, res, next) => this.handleGetcssinternal(req, res, next));
         this._server.get('/bs', (req, res, next) => this.handleGetbs(req, res, next));
+        this._server.get('/welcome', (req, res, next) => this.handleGetWelcome(req, res, next));
     }
 // eine Anfrage wird gemacht--> händlermethode muss definiert werden damit ich die Anfrage abarbeiten kann
 // (req, res, next) => this.handleGetListe(req, res, next) die funktion wird an das objekt gebunden
@@ -42,7 +43,8 @@ export class Server {
     private handlePostLogin(req: express.Request, res: express.Response, next: express.NextFunction) {
         if (req.body.email === 'test@test.at' &&
            req.body.password === 'geheim') {
-            res.render('welcome.pug', { anrede: 'Herr', name: 'Rossi'});
+            // res.render('welcome.pug', { anrede: 'Herr', name: 'Rossi'});
+            res.redirect('/welcome');
         } else {
             res.status(404).send('404 NOT AUTHORIZED');
         }
@@ -86,6 +88,8 @@ export class Server {
     // next ist dafü da falls die Anfrage nicht sofort bearbeitet werden kann
     // und gibt sie der nächsten schicht weiter
 
-
+    private handleGetWelcome(req: express.Request, res: express.Response, next: express.NextFunction) {
+        res.render('welcome.pug', { anrede: 'Herr', name: 'Rossi'});
+    }
 
 }
