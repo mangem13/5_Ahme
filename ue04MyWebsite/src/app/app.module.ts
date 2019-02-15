@@ -9,6 +9,7 @@ import { TreesComponent } from './trees.component';
 import { CarsComponent } from './cars.component';
 import { ClockComponent } from './clock.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ChartsModule } from 'ng4-charts/ng4-charts';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { NavbarComponent } from './navbar/navbar.component';
   imports: [
     NgbModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
